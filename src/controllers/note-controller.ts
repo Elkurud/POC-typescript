@@ -18,3 +18,21 @@ export async function getNotes(req: Request, res: Response) {
     res.status(httpStatus.OK).send(notes)
 
 }
+
+export async function editNote(req: Request, res: Response) {
+
+    const id: string = req.params.id
+    const content = req.body.content as string
+
+    await noteService.editNote(id, content);
+    res.sendStatus(httpStatus.OK)
+
+}
+
+export async function deleteNote(req: Request, res: Response) {
+
+    const id: string = req.params.id
+    await noteService.deleteNote(id)
+    res.sendStatus(httpStatus.OK)
+    
+}
